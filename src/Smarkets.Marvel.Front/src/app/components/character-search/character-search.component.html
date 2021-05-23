@@ -1,0 +1,72 @@
+<div class="container-fluid">
+    <form [formGroup]="form">
+        <div class="form-row">
+            <div class="col-sm-4 offset-3">
+                <input formControlName="term" type="text" placeholder="Search..." class="form-control"
+                    [ngClass]="{'invalid': form.controls.term.invalid && (form.controls.term.dirty || form.controls.term.touched)}">
+            </div>
+            <div class="col-sm-2">
+                <button type="submit" (click)="onSearch()" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+    <hr *ngIf="results">
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-1 mb-3" *ngFor="let item of results; index as c;">
+            <div class="card" >
+                <div class="card-header">
+                    <strong id="name">{{item.name}}</strong>
+                </div>
+                
+                <img id="imagem" [src]="item.thumbnailUrl" class="card-img-top" [alt]="item.name" (click) = "onSearchUnique(item.id)"   data-toggle="modal" data-target = "#modalCharacterDetails"/>
+                
+                <div class="card-body">                
+                    <p class="card-text">{{item.description}}</p>                    
+                    
+                </div>
+            </div>
+        </div>
+    </div> 
+    
+    
+    <!-- Modal detalhes-->
+    
+    <div  class="modal fade" id="modalCharacterDetails" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div *ngFor="let item2 of resultsCharacter;">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">{{item2.name}}</h5>
+            </div>
+            <div class="modal-body">
+              <div class="container">
+                  <div class="row">
+                      <div class="col-right">
+                        <img [src] = "item2.thumbnailUrl">
+                      </div>
+                      <div class="col">
+                          <p align = "justify">{{item2.description}}</p>
+                      </div>
+                  </div>
+                   
+                  <div class="row">
+                    <div class="col-right">
+                        <h5>Stories:</h5>
+                        <ul *ngFor="let storie of item2.stories">
+                          <li>
+                            <p>{{storie.name}}</p>
+                          </li>
+                        </ul>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

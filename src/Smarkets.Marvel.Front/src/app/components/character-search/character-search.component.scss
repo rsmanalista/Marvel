@@ -1,0 +1,27 @@
+.card{
+  height: 45rem;
+}
+
+.card-text{
+  max-height: 10em;
+  overflow-y: auto;
+}
+
+.card-img-top{
+  max-height: 28rem;
+  cursor: pointer;
+}
+
+ul#horizontal-list {
+	min-width: 696px;
+	list-style: none;
+	padding-top: 20px;
+	}
+	ul#horizontal-list li {
+		display: inline;
+	}
+
+  .horizontal-table {
+    display: table;   /* Allow the centering to work */
+    margin: 0 auto;
+  } 
